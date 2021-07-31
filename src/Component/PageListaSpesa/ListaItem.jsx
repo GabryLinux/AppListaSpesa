@@ -7,16 +7,19 @@ import './shadow.css'
 //import { useSwipeable } from 'react-swipeable' 
 
 function ListaItem({itemName,Quantity,Status,index,changeStatus,id,deleteElement,Data,Market}) {
-    const [status,setStatus] = useState(Status)
-    const [eliminated,setEliminated] = useState(false)
-    const elRef = useRef()
+    
+    //const [status,setStatus] = useState(Status)
+    
+    //const [eliminated,setEliminated] = useState(false)
+    //const elRef = useRef()
     const anchorRef = useRef()
+    console.log("DEBUG")
     var statusCopy = Status
     
-    const [touchStart, setTouchStart] = React.useState(0);
-    const [touchEnd, setTouchEnd] = React.useState(0);
-
-    const getTranslationX = (translation)=>{
+    //const [touchStart, setTouchStart] = React.useState(0);
+    //const [touchEnd, setTouchEnd] = React.useState(0);
+     
+    function getTranslationX (translation){
         let string = ''
         let i;
         if(translation)
@@ -30,7 +33,7 @@ function ListaItem({itemName,Quantity,Status,index,changeStatus,id,deleteElement
             }
         return string
     }
-
+   
     
 
     function getStyle(style) {

@@ -114,7 +114,7 @@ function PageProdotti() {
       
     },[])
     return (
-        <div className="w-full h-full flex-col px-4 py-6 text-gray-400">
+        <div className="w-full h-full overflow-scroll flex-col px-4 py-6 text-gray-400">
           {
             lista &&
             <ListaProdotti lista={lista}/>

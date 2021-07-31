@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SearchBarSpesa from '../SearchBarSpesa'
-import Header from './Header'
-import ListaSpesa from './ListaSpesa'
+import Header from './Header.jsx'
+import ListaSpesa from './ListaSpesa.jsx'
 import firebase from 'firebase'
 
 function PageSpesa() {

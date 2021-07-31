@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ListaItem from './ListaItem'
+import ListaItem from './ListaItem.jsx'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import firebase from 'firebase'
 
@@ -7,7 +7,8 @@ function ListaSpesa({ deleteElement, dbLista, Market, listas}) {
     const [lista,setLista] = useState([...dbLista])
     const [flag,setFlag] = useState(false)
     const DB = firebase.firestore().collection("Acquisti")
-    const handleOnDragEnd = (result)=>{
+    /*
+    function handleOnDragEnd(result){
         if(!result.destination)
             return;
         var items = [...lista]
@@ -17,7 +18,7 @@ function ListaSpesa({ deleteElement, dbLista, Market, listas}) {
         DB.doc(Market).set({
             Prodotti : [...items]
         })
-    }
+    }*/
     const changeStatus = (index) => {
         let newArr = [...lista]; // copying the old datas array
         let today = new Date().toLocaleDateString()
@@ -47,7 +48,7 @@ function ListaSpesa({ deleteElement, dbLista, Market, listas}) {
       console.log("UPDATED IN CHILD");
     }, [dbLista]);
     return (
-        <DragDropContext  onDragEnd={handleOnDragEnd} >
+        <DragDropContext >
         <div className="py-1 px-2 max-w-full w-full flex-1 h-5/6 overflow-y-scroll overflow-x-hidden absolute left-0">
         <Droppable  droppableId="items" >
             {(provided)=>(

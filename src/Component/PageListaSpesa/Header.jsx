@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import SectionHeaderlement from './SectionHeaderlement'
+import SectionHeaderlement from './SectionHeaderlement.jsx'
 import firebase from 'firebase'
 import { list } from 'postcss'
-import DeleteAllCheckedButton from './DeleteAllCheckedButton'
+import DeleteAllCheckedButton from './DeleteAllCheckedButton.jsx'
 
 function Header({lista,deleteElement,setLista}) {
     //const luoghi = ['Supermarket','Ferramenta','Farmacia','Panificio']

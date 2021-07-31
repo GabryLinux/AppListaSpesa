@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import DeleteAllCheckedButton from './DeleteAllCheckedButton'
-import ListaSpesa from './ListaSpesa'
+import DeleteAllCheckedButton from './DeleteAllCheckedButton.jsx'
+import ListaSpesa from './ListaSpesa.jsx'
 
 function SectionHeaderlement({ section, activeOption, onClick, lista, deleteElement, dbLista, deleteFunc}) {
     const [listat,setLista] = useState("")

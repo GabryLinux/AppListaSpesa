@@ -1,5 +1,5 @@
 import React from 'react'
-import BasketSVG from './BasketSVG'
+import BasketSVG from './BasketSVG.jsx'
 import './shadow.css'
 
 function DeleteAllCheckedButton({deleteFunc}) {
