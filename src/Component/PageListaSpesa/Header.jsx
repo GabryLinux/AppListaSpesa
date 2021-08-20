@@ -7,7 +7,7 @@ import DeleteAllCheckedButton from './DeleteAllCheckedButton.jsx'
 function Header({lista,deleteElement,setLista}) {
     //const luoghi = ['Supermarket','Ferramenta','Farmacia','Panificio']
     const [luoghi,setLuoghi] = useState("")
-    const [activeOption,setActive] = useState('Supermarket')
+    const [activeOption,setActive] = useState('Supermercato')
     const [ListaDb,setListaDB] = useState([])
     const [DB,setDB] = useState([])
     //<ListaSpesa lista={lista} setLista={setLista} changeStatus={changeStatus} deleteElement={deleteElement}/>
@@ -21,6 +21,10 @@ function Header({lista,deleteElement,setLista}) {
         setLuoghi([...DB.map(x=>x.Market)])
         
     },[])
+
+    useEffect(()=>{
+        console.log(activeOption)
+    },[activeOption])
     function flatten(arr) {
         return Array.isArray(arr) ? [].concat.apply([], arr.map(flatten)) : arr;
     }

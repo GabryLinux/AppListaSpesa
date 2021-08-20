@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import firebase from 'firebase'
 
-function PopUpAddLista({ text, popUpRef,findFunc,addLista,setInterruttore,setAlertProp}) {
+function PopUpAddLista({ text, popUpRef,findFunc,addLista,setInterruttore,setAlertProp,setCurrent}) {
     const [lista,setLista] = useState([])
     const [quantity,setQuantity] = useState('')
-    const [prodotto,setProdotto] = useState("")
-    const [market,setMarket] = useState("")
+    const [prodotto,setProdotto] = useState('-')
+    const [market,setMarket] = useState("Supermercato")
     const marketRef = useRef()
     async function getDB(){
         const db = firebase.firestore()
@@ -17,7 +17,11 @@ function PopUpAddLista({ text, popUpRef,findFunc,addLista,setInterruttore,setAle
     },[quantity])
 
     useEffect(()=>{
-        setProdotto(text)
+        if(text == ' ')
+            setProdotto('')
+        else{
+            setProdotto(text)
+        }
     },[text])
 
     useEffect(()=>{
@@ -49,7 +53,7 @@ function PopUpAddLista({ text, popUpRef,findFunc,addLista,setInterruttore,setAle
                     <input type="text" value={quantity} className="text-xl text-gray-700 w-full focus:outline-none border px-2 py-2 border-blue-500 rounded-xl" onChange={(e)=>{setQuantity(e.target.value)}}></input>
                 </div>
                 <div className="w-full h-full flex items-end justify-between px-4 py-3">
-                    <button className="text-white bg-red-500 text-xl p-2 rounded-lg" onClick={()=>{popUpRef.current.style.display = 'none'; marketRef.current.style.height = "0px"}}>Annulla</button>
+                    <button className="text-white bg-red-500 text-xl p-2 rounded-lg" onClick={()=>{popUpRef.current.style.display = 'none'; marketRef.current.style.height = "0px"; setCurrent('')}}>Annulla</button>
                     <button className="text-white bg-green-500 text-xl p-2 rounded-lg" onClick={async () => { popUpRef.current.style.display = 'none'; 
                     try
                     {

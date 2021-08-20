@@ -24,6 +24,7 @@ function TendinaLista({lista}) {
                      return <TendinaItem Item={y.Item} isLast={index == lista.Prodotti.length -1}/>
                 })
             }
+            
             </div>
         </div>
     )

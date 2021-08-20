@@ -5,12 +5,15 @@ import SearchBarSpesa from './SearchBarSpesa'
 import firebase from 'firebase'
 import { v4 as uuidv4 } from 'uuid';
 import AlertMessage from './AlertMessage'
+import AddCustomProdottoItem from './AddCustomProdottoItem'
 
 function PageCreaLista() {
     const [text, setText] = useState('')
     const [options, setOptions] = useState([])
-    const [currentOption,setCurrent] = useState('')
+    const [currentOption,setCurrent] = useState(' ‎‎')
     const [interruttore,setInterruttore] = useState(false)
+    const [isScrolling,setScrolling] = useState(false)
+    var timerFunc
     const popUpRef = useRef()
     const db = firebase.firestore()
     var textAlert;
@@ -71,6 +74,9 @@ function PageCreaLista() {
         console.log(array)
         setOptions([...flatten(array)])
     },[])
+    useEffect(()=>{
+        console.log(currentOption)
+    },[currentOption])
     async function findFunc(text,quantity){
         array = []
         const data = await getDB()
@@ -141,17 +147,19 @@ function PageCreaLista() {
             <div className="shadow-md  rounded border border-gray-400 divide-y divide-black ">
             <SearchBarSpesa options={options} setOptions={setOptions} text={text} setText={setText} titleCase={titleCase}/>
             {options.length > 0 &&
-                <div className="max-h-full h-96 pt-5 px-2 overflow-scroll" >
+                <div className="max-h-full h-96 pt-5 px-2 overflow-scroll" onScroll={()=>{setScrolling(true);timerFunc = setTimeout(()=>setScrolling(false),1000)}}>
                     <p className="text-xs text-gray-400 px-3 py-1">Seleziona il prodotto da inserire nella lista</p>
+                    <AddCustomProdottoItem click={()=>{setCurrent(' ')}}/>
                     {
                     options.map(x => {
                         if(text==0 || x.includes(text))
-                            return <ListItem itemName={x} onClick={async()=>{await Click(x);setInterruttore(true)}} onHold={() => { setText(''); setCurrent(x); }} />
+                            return <ListItem itemName={x} onClick={async()=>{if(!isScrolling){await Click(x);setInterruttore(true)}}} onHold={() => { setText(''); setCurrent(x); }} />
                     })
                     }
+                    
                 </div>
             }
-                <PopUpAddLista text={currentOption} popUpRef={popUpRef} findFunc={findFunc} addLista={addLista} setInterruttore={setInterruttore} setAlertProp={setAlertProps}/>
+                <PopUpAddLista text={currentOption} popUpRef={popUpRef} findFunc={findFunc} addLista={addLista} setInterruttore={setInterruttore} setAlertProp={setAlertProps} setCurrent={setCurrent}/>
                 
             </div>
             
